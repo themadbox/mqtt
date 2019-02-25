@@ -1172,6 +1172,8 @@ class MQTT
 
         if ($current_time - $this->last_ping_time >= $this->keepalive / 2) {
             Debug::Log(Debug::DEBUG, "keepalive(): current_time={$current_time}, last_ping_time={$this->last_ping_time}, keepalive={$this->keepalive}");
+            $this->reconnect();
+            $this->subscribe($this->topics);
             $this->ping();
         }
 
